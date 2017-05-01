@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="logstash" class="net.logstash.logback.appender.LoggingEventAsyncDisruptorAppender">
+        <appender class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                <providers>
+                    <message/>
+                    <arguments/>
+                </providers>
+            </encoder>
+        </appender>
+    </appender>
+
+    <root level="all">
+        <appender-ref ref="logstash"/>
+    </root>
+</configuration>
