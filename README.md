@@ -5,6 +5,8 @@
 1. Establish (via tests) how the `net.logstash.logback.encoder.LogstashEncoder` behaves with various different types of `Marker` payload, including `byte[]`, `Enumeration`, `Optional`, `BigInteger`, `BigDecimal`, `Stream`, `Iterator`, `Iterable`, etc. For example:
 
     ```java
+    import static org.test.OurMarkers.append;
+
     LogstashMarker m = append("Bytes", "གུ་གེ་ཚེ་རིང་རྒྱལ་པོ་".getBytes(Charsets.UTF_8));
     assertThat( markerToString(m) ).contains("\"Bytes\":\"གུ་གེ་ཚེ་རིང་རྒྱལ་པོ་\"");
 
