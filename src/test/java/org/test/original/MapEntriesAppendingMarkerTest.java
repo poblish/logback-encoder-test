@@ -22,7 +22,7 @@ public class MapEntriesAppendingMarkerTest
     @Test
     public void testWriteTo() throws IOException {
 
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         map.put("myField", "value");
 
         StringWriter writer = new StringWriter();
@@ -39,22 +39,22 @@ public class MapEntriesAppendingMarkerTest
 
     @Test
     public void testEquals() {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
 
         assertThat(appendEntries(map)).isEqualTo(appendEntries(map));
 
-        Map<String, String> map2 = new HashMap<String, String>();
+        Map<String, String> map2 = new HashMap<>();
         map2.put("foo", "bar");
         assertThat(appendEntries(map)).isNotEqualTo(appendEntries(map2));
     }
 
     @Test
     public void testHashCode() {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
 
         assertThat(appendEntries(map).hashCode()).isEqualTo(appendEntries(map).hashCode());
 
-        Map<String, String> map2 = new HashMap<String, String>();
+        Map<String, String> map2 = new HashMap<>();
         map2.put("foo", "bar");
         assertThat(appendEntries(map).hashCode()).isNotEqualTo(appendEntries(map2).hashCode());
     }

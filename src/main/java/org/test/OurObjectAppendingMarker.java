@@ -37,7 +37,7 @@ public class OurObjectAppendingMarker extends SingleFieldAppendingMarker {
             generator.writeObject(Iterators.forEnumeration((Enumeration) payload));
         }
         else if (payload instanceof Stream) {
-            generator.writeObject(((Stream) payload).map( n -> n.toString() ).collect( Collectors.toList() ));
+            generator.writeObject(((Stream) payload).map(Object::toString).collect( Collectors.toList() ));
         }
         else {
             generator.writeObject(payload);
@@ -46,7 +46,7 @@ public class OurObjectAppendingMarker extends SingleFieldAppendingMarker {
 
     // Should be irrelevant
     @Override
-    protected Object getFieldValue() {
+    public Object getFieldValue() {
         return StructuredArguments.toString(payload);
     }
 

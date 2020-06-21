@@ -1,6 +1,7 @@
 package org.test.utils;
 
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.google.common.base.Charsets;
@@ -12,18 +13,16 @@ import net.logstash.logback.marker.LogstashMarker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 public class TestUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TestUtils.class);
-    private static final JsonProviders PROVIDERS = new JsonProviders();
+    private static final JsonProviders<ILoggingEvent> PROVIDERS = new JsonProviders<>();
 
     static {
         PROVIDERS.addProvider( new LogstashMarkersJsonProvider() );
     }
 
-    public static String markerToString(final LogstashMarker m) throws IOException {
+    public static String markerToString(final LogstashMarker m) {
         final LogstashEncoder encoder = new LogstashEncoder();
         encoder.setJsonGeneratorDecorator( new NonEscapingJsonGeneratorDecorator() );
 
