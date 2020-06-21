@@ -122,6 +122,11 @@ public class MarkersTest {
         assertThat( markerToString( append("SB", sb) ) ).contains("\"SB\":\"Hello-1979\"");
     }
 
+    @Test public void testBigPayload() throws Exception {
+        final String bigString = new String(new char[300000]).replace('\0', 'x');
+        assertThat( markerToString( append("Big", bigString) ) ).contains("\"Big\":\"" + bigString + "\"");
+    }
+
     @Test public void testBean() throws Exception {
         final LogstashMarker marker = append("Bean", new TestBean());
         assertThat( markerToString(marker) ).contains("\"Bean\":{\"name\":\"Hello\",\"val\":345.34234234,\"yrs\":40}");
